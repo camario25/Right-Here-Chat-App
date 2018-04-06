@@ -1,0 +1,19 @@
+{
+  "name": "right-here",
+  "version": "1.0.0",
+  "description": "chat-app-geolocation",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camario25/Right-Here-Chat-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camario25/Right-Here-Chat-App/issues"
+  },
+  "homepage": "https://github.com/camario25/Right-Here-Chat-App#readme"
+}
