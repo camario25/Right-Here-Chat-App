@@ -4,7 +4,11 @@
   "description": "chat-app-geolocation",
   "main": "server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "9.4.0"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/camario25/Right-Here-Chat-App/issues"
   },
-  "homepage": "https://github.com/camario25/Right-Here-Chat-App#readme"
+  "homepage": "https://github.com/camario25/Right-Here-Chat-App#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
