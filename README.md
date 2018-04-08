@@ -25,4 +25,4 @@ Link to Wireframes:
 https://drive.google.com/open?id=1XKzzdz-3bVslF_kUlDbkxf9HXBXOz_ji
 
 Link to ERD:
-
+https://www.lucidchart.com/invitations/accept/18f8cbc0-c0a4-48b1-a6f3-9a6e80f03ba0
