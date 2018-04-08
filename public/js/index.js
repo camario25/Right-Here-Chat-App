@@ -24,3 +24,22 @@ socket.on('newMessage', (message) => {
       console.log('it worked');
     });
   });
+  
+  let locationButton = jQuery('#send-map');
+  locationButton.on('click', () => {
+    console.log('clicked!');
+    if (!navigator.geolocation) {
+      return console.log('geolocation not supported');
+    };
+    navigator.geolocation.getCurrentPosition( (position) => {
+      console.log(position);
+      socket.emit('createLocationMessage', {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      });
+      
+    },
+    () => {
+      console.log('unable to fetch location');
+    });
+  });

@@ -25,6 +25,10 @@ io.on('connection', (socket) => {
     callback('from the server');
   });
   
+  socket.on('createLocationMessage', (coords) => {
+    io.emit('newMessage', generateMessage('Wario', `${coords.latitude}, ${coords.longitude}`));
+  });
+  
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
