@@ -10,9 +10,14 @@ let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 
-app.use(express.static('publicPath'));
+app.use(express.static(publicPath));
 
-
+io.on('connection', (socket) => {
+  console.log('user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
 
 

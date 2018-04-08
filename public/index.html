@@ -11,6 +11,13 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
     let socket = io();
+    socket.on('connect', () => {
+      console.log('connected to io')
+    });
+    
+    socket.on('disconnect', () => {
+      console.log('disconnected form io')
+    });
     </script>
   </body>
 </html>
