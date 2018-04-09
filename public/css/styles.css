@@ -15,6 +15,9 @@ h1 {
   font-family: 'Audiowide', cursive;
   color: #5680e9;
 }
+.Logout {
+  height: 3em;
+}
 .Users {
   background-color: #5ab9ea;
 }
