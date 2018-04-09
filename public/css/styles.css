@@ -1,0 +1,46 @@
+body {
+  margin: 1em;
+  font-family: 'Lato', sans-serif;
+}
+.center{
+  display: flex;
+  justify-content: space-between;
+}
+header {
+  background-color: #c1c8e4;
+  display: flex;
+  justify-content: space-around;
+}
+h1 {
+  font-family: 'Audiowide', cursive;
+  color: #5680e9;
+}
+.Users {
+  background-color: #5ab9ea;
+}
+
+#message-form {
+  display: flex;
+}
+#text-box {
+  height: 5em;
+  width: 25em;
+}
+#send-map {
+  background-color: #8860d0;
+  margin: 3em;
+  width: 20em;
+}
+.Rooms {
+  background-color: #5ab9ea;
+}
+
+footer {
+  background-color: #84ceeb;
+  text-align: center;
+  border-top: solid 1px;
+  border-color: #c1c8e4;
+}
+.contact {
+  font-size: 3em;
+}
