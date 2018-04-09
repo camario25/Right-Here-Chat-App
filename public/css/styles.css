@@ -20,8 +20,13 @@ h1 {
 }
 .Users {
   background-color: #5ab9ea;
+  padding-right: 3em;
+  text-align: center;
 }
 
+ol {
+  list-style-type: none;
+}
 #message-form {
   display: flex;
 }
@@ -36,6 +41,8 @@ h1 {
 }
 .Rooms {
   background-color: #5ab9ea;
+  padding-left: 3em;
+  text-align: center;
 }
 
 footer {
@@ -43,6 +50,12 @@ footer {
   text-align: center;
   border-top: solid 1px;
   border-color: #c1c8e4;
+  bottom:0;
+  width:100%;
+}
+#contact-header {
+  margin-top: .3em;
+  margin-bottom: .3em;
 }
 .contact {
   font-size: 3em;
