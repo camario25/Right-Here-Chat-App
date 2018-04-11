@@ -59,3 +59,8 @@ function scaleBannerVideoSize(element){
 
     });
 }
+
+let anchor = $('a');
+anchor.on('click', () => {
+  console.log('linked clicked');
+})

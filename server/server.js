@@ -11,7 +11,12 @@ let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 
+app.get("/", function(req, res) {
+  res.sendFile(publicPath + '/index.html');
+});
 app.use(express.static(publicPath));
+
+
 
 io.on('connection', (socket) => {
   console.log('user connected');
