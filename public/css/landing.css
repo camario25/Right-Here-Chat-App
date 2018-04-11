@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 header {
   background-color: #c1c8e4;
   display: flex;
@@ -11,7 +15,6 @@ h1 {
   position: relative;
   z-index: 2;
   text-align: center;
-  margin-top: 1em;
 }
 
 .homepage-hero-module {
