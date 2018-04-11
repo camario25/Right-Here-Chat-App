@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/camario25/Right-Here-Chat-App#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
     "express": "^4.16.3",
     "moment": "^2.22.0",
     "socket.io": "^2.1.0"

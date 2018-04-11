@@ -1,6 +1,7 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const socketIO = require('socket.io');
 
@@ -14,7 +15,22 @@ let io = socketIO(server);
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
 });
-app.use(express.static(publicPath));
+// app.set('views', __dirname + '/views');
+app.use(express.static(publicPath, {
+  extensions: ['html','ejs']
+}));
+// app.use(bodyParser.urlencoded({ extended: true })); // req.body
+// 
+// // change engine
+// app.set("view engine", "ejs");
+// // methode overider
+// // app.use(methodOverride("_method"));
+// Set CORS Headers
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+  });
 
 
 
