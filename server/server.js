@@ -64,15 +64,17 @@ io.on('connection', (socket) => {
       socket.username = data;
       usernames.push(socket.username);
       io.sockets.emit('usernames', usernames);
-      socket.broadcast.emit('newMessage', generateMessage('admin', 'New user joined'));
+      socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
     }
   });
   
   socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage:', newMessage);
     // let newMsg = new Chat()
-    io.emit('newMessage', generateMessage(newMessage.from, newMessage.text));
-    callback();
+    io.emit('newMessage', 
+    // {text: newMessage, from: socket.username});
+     generateMessage(socket.username, newMessage.text));
+    // callback();
   });
   
   socket.on('createLocationMessage', (coords) => {

@@ -13,6 +13,7 @@ socket.on('newMessage', (message) => {
   let formattedTime = moment(message.createdAt).format('h:mm a');
   let li = jQuery('<li></li>');
   li.text(`${message.from} ${formattedTime}: ${message.text}`);
+  // li.text(`${message.from} what ${message.text.text}`);
   jQuery('#messages').append(li);
 });
   
@@ -34,7 +35,6 @@ socket.on('newMessage', (message) => {
     let messageTextbox = jQuery('[name=message]');
     
     socket.emit('createMessage', {
-      from: 'Toad',
       text: messageTextbox.val()
     },
     () => {
