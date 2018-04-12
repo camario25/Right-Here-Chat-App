@@ -3,8 +3,9 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const db = require('../models/index.js');
 const socketIO = require('socket.io');
+const Chat = db.Chat;
 
 const {generateMessage, generateLocationMessage} = require('./utils/message.js')
 const publicPath = path.join(__dirname, '../public');
@@ -22,13 +23,6 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rightHere', (e
   }
 });
 
-let ChatSchema = mongoose.Schema({
-  from: String,
-  text: String,
-  createdAt: {type: Date, default: Date.now},
-});
-
-let Chat = mongoose.model('Message', ChatSchema);
 
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
