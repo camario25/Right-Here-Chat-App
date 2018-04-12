@@ -48,6 +48,17 @@ app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
 });
 
+app.post('/login', (req, res) => {
+  console.log("Logging in: ", req.body)
+  User.register(new User({username: req.body.username}), req.body.password, (err, newUser) => {
+    if (err) { console.log(err); }
+    passport.authenticate('local')(req, res, () => {
+      console.log('auth worked');
+      res.redirect('/chat');
+    });
+  });
+});
+
 app.use(express.static(publicPath, {
   extensions: ['html']
 }));

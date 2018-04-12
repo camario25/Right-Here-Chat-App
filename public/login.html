@@ -17,9 +17,9 @@
     <div id="username-input">
       <h1>Enter Your Username</h1>
       <p id="usernameError"></p>
-      <form class="username-form">
-        <input id="username-box" type="text" placeholder="Enter Username"/>
-        <input id="password-box" type="password" placeholder="Enter Password"/>
+      <form class="username-form" method="POST" action="./login">
+        <input name="username" id="username-box" type="text" placeholder="Enter Username"/>
+        <input id="password-box" name="password" type="password" placeholder="Enter Password"/>
         <button id="user-send-button">Submit</button>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
