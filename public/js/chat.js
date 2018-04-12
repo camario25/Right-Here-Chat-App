@@ -1,5 +1,9 @@
 let socket = io();
 
+jQuery('.Logout').on('click', () => {
+  location.href = "/";
+});
+
 socket.on('connect', () => {
   console.log('connected to io')
 });
@@ -9,7 +13,7 @@ socket.on('disconnect', () => {
 });
 
 socket.on('load saved messages', (docs) => {
-  for (let i=0; i < docs.length; i++) {
+  for (let i=docs.length-1; i > 0; i--) {
     console.log(docs[i]);
     let formattedTime = moment(docs[i].createdAt).format('h:mm a');
     let li = jQuery('<li></li>');

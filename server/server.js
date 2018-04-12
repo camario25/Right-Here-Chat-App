@@ -49,7 +49,7 @@ app.use(function(req, res, next) {
 io.on('connection', (socket) => {
   console.log('user connected');
   let oldMessages = Chat.find({});
-  oldMessages.limit(12).exec((err, docs) => {
+  oldMessages.sort('-createdAt').limit(12).exec((err, docs) => {
     if(err) throw err;
     console.log('send old');
     socket.emit('load saved messages', docs);

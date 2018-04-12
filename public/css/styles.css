@@ -37,6 +37,12 @@ button {
   border: solid 2px;
   border-color: #8860d0;
 }
+#password-box {
+  height: 2em;
+  width: 15em;
+  border: solid 2px;
+  border-color: #8860d0;
+}
 #main-msg{
   display: none;
 }
