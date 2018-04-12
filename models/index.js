@@ -9,3 +9,4 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rightHere', (e
 });
 
 module.exports.Chat = require('./Chat');
+module.exports.User = require('./User');

@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const db = require('../models/index.js');
 const socketIO = require('socket.io');
 const Chat = db.Chat;
+const User = db.User;
 
 const {generateMessage, generateLocationMessage} = require('./utils/message.js')
 const publicPath = path.join(__dirname, '../public');
