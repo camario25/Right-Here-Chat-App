@@ -13,8 +13,8 @@ socket.on('disconnect', () => {
 });
 
 socket.on('load saved messages', (docs) => {
-  for (let i=docs.length-1; i > 0; i--) {
-    console.log(docs[i]);
+  for (let i = docs.length -1; i >= 0; i--) {
+    console.log(docs[docs.length -1]);
     let formattedTime = moment(docs[i].createdAt).format('h:mm a');
     let li = jQuery('<li></li>');
     li.html(`<b>${docs[i].from}</b> ${formattedTime}: ${docs[i].text}`);

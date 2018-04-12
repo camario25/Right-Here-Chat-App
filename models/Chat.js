@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-let ChatSchema = mongoose.Schema({
+let ChatSchema = new Schema({
   from: String,
   text: String,
   createdAt: {type: Date, default: Date.now},
