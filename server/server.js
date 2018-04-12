@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
       socket.username = data;
       usernames.push(socket.username);
       io.sockets.emit('usernames', usernames);
-      socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
+      socket.broadcast.emit('newMessage', generateMessage('Admin', `${socket.username} has joined the chat`));
     }
   });
   
@@ -72,9 +72,8 @@ io.on('connection', (socket) => {
     console.log('createMessage:', newMessage);
     // let newMsg = new Chat()
     io.emit('newMessage', 
-    // {text: newMessage, from: socket.username});
      generateMessage(socket.username, newMessage.text));
-    // callback();
+     callback();
   });
   
   socket.on('createLocationMessage', (coords) => {
@@ -85,6 +84,7 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
     if(!socket.username) return;
     usernames.splice(usernames.indexOf(socket.username), 1);
+    socket.broadcast.emit('newMessage', generateMessage('Admin', `${socket.username} has left the chat`));
     io.sockets.emit('usernames', usernames);
   });
 });
