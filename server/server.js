@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const socketIO = require('socket.io');
 
@@ -11,13 +12,30 @@ const port = process.env.PORT || 3000;
 let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
+let usernames = [];
+
+// mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/righthere', (err) => {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log('connected to mongodb');
+//   }
+// });
+// 
+// let ChatSchema = mongoose.Schema({
+//   username: String,
+//   msg: String,
+//   created: {type: Date, default: Date.now},
+// });
+// 
+// let Chat = mongoose.model('Message', ChatSchema);
 
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
 });
 // app.set('views', __dirname + '/views');
 app.use(express.static(publicPath, {
-  extensions: ['html','ejs']
+  extensions: ['html']
 }));
 // app.use(bodyParser.urlencoded({ extended: true })); // req.body
 // 
@@ -37,11 +55,22 @@ app.use(function(req, res, next) {
 io.on('connection', (socket) => {
   console.log('user connected');
   
-  socket.emit('newMessage', generateMessage('admin', 'welcome to Right Here'));
-  socket.broadcast.emit('newMessage', generateMessage('admin', 'New user joined'));
+  socket.on('new user', (data, callback) => {
+    if (usernames.indexOf(data) != -1) {
+      callback(false);
+    } else {
+      callback(true);
+      console.log(data);
+      socket.username = data;
+      usernames.push(socket.username);
+      io.sockets.emit('usernames', usernames);
+      socket.broadcast.emit('newMessage', generateMessage('admin', 'New user joined'));
+    }
+  });
   
   socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage:', newMessage);
+    // let newMsg = new Chat()
     io.emit('newMessage', generateMessage(newMessage.from, newMessage.text));
     callback();
   });
@@ -52,6 +81,9 @@ io.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
     console.log('user disconnected');
+    if(!socket.username) return;
+    usernames.splice(usernames.indexOf(socket.username), 1);
+    io.sockets.emit('usernames', usernames);
   });
 });
 

@@ -15,24 +15,46 @@ h1 {
   font-family: 'Audiowide', cursive;
   color: #5680e9;
 }
-.Logout {
+button {
+  background-color: #8860d0;
   height: 3em;
+  width: 7em;
+}
+.Logout {
+  
 }
 .Users {
   background-color: #5ab9ea;
   padding-right: 3em;
   text-align: center;
 }
-
+#username-input{
+  text-align: center;
+}
+#username-box {
+  height: 2em;
+  width: 15em;
+  border: solid 2px;
+  border-color: #8860d0;
+}
+#main-msg{
+  display: none;
+}
 ol {
   list-style-type: none;
 }
 #message-form {
   display: flex;
+  text-align: center;
 }
 #text-box {
   height: 5em;
   width: 25em;
+  border: solid 2px;
+  border-color: #84ceeb;
+}
+#msg-send-button {
+  
 }
 #send-map {
   background-color: #8860d0;
@@ -59,4 +81,11 @@ footer {
 }
 .contact {
   font-size: 3em;
+}
+button:hover {
+  font-weight: bolder;
+  border: solid 3px;
+  border-color: #5680e9;
+  background-color: #8860d0;
+  height: 3em;
 }

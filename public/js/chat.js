@@ -27,6 +27,8 @@ socket.on('newMessage', (message) => {
   });
   
   jQuery('#message-form').on('submit', (e) => {
+        console.log('test');
+    console.log(e);
     e.preventDefault();
     
     let messageTextbox = jQuery('[name=message]');
@@ -39,6 +41,31 @@ socket.on('newMessage', (message) => {
       console.log('it worked');
       messageTextbox.val('')
     });
+  });
+  
+  jQuery('.username-form').on('submit', (e) => {
+    e.preventDefault();
+    let username = jQuery('#username-box');
+    socket.emit('new user', username.val(), (data) => {
+      if (data) {
+        jQuery('#username-input').hide();
+        jQuery('#main-msg').show();
+      } else {
+        jQuery('#usernameError').html('Username is already taken!')
+      }
+    });
+    username.val('');
+  });
+  
+  socket.on('usernames', (data) => {
+    let users ='';
+    let usersList = jQuery('#users-list');
+    console.log(usersList);
+    for (i=0;i<data.length;i++) {
+      users += data[i] + '</br>'
+    } 
+    usersList.html(users);
+    console.log(usersList);
   });
   
   let locationButton = jQuery('#send-map');

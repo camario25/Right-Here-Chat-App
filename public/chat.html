@@ -17,17 +17,24 @@
     <div class="center">
       <aside class='Users'>
         <h2>Current Users</h2>
-        <div></div>
+        <div id="users-list"></div>
       </aside>
-      <main>
-        <ol id="messages"></ol>
-        
-        <form id="message-form">
-          <input name="message" type="text" placeholder="Write here" id="text-box" autofocus autocomplete="off"/>
-          <button>Send</button>
-        </form>
-        <button id="send-map">I'm Here</button>
+      <main id='main-msg'>
+          <ol id="messages"></ol>
+          
+          <form id="message-form">
+            <input name="message" type="text" placeholder="Write here" id="text-box" autofocus autocomplete="off"/>
+            <button id="msg-send-button">Send</button>
+          </form>
+          <button id="send-map">I'm Here</button>
       </main>
+      <div id="username-input">
+        <h1>Enter Your Username</h1>
+        <p id="usernameError"></p>
+        <form class="username-form">
+          <input id="username-box" type="text" placeholder="Enter Username"/>
+          <button id="user-send-button">Submit</button>
+      </div>
       <aside class="Rooms">
         <h2>Current Rooms</h2>
         <div></div>
