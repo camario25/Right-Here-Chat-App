@@ -2,6 +2,11 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const cookieParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const db = require('../models/index.js');
 const socketIO = require('socket.io');
@@ -24,6 +29,20 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rightHere', (e
   }
 });
 
+//middleware for auth
+app.use(cookieParser());
+app.use(session({
+  secret: 'WriteRightHere',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport config
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');

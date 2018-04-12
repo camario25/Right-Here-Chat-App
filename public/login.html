@@ -13,13 +13,15 @@
     <header>
       <h1>RIGHT HERE</h1>
       <div><img src="./assets/Right-Here-Logo.png"></div>
-      <form class="login-form">
-        <input type="text" name="email" placeholder="Email"/>
-        <input type="password" name="password" placeholder="Password"/>
-        <button type="submit" name="login">Login</button>
-      </form>
     </header>
-    
+    <div id="username-input">
+      <h1>Enter Your Username</h1>
+      <p id="usernameError"></p>
+      <form class="username-form">
+        <input id="username-box" type="text" placeholder="Enter Username"/>
+        <input id="password-box" type="password" placeholder="Enter Password"/>
+        <button id="user-send-button">Submit</button>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/js/login.js"></script>
   </body>
