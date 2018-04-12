@@ -28,17 +28,10 @@ mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rightHere', (e
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
 });
-// app.set('views', __dirname + '/views');
+
 app.use(express.static(publicPath, {
   extensions: ['html']
 }));
-// app.use(bodyParser.urlencoded({ extended: true })); // req.body
-// 
-// // change engine
-// app.set("view engine", "ejs");
-// // methode overider
-// // app.use(methodOverride("_method"));
-// Set CORS Headers
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
