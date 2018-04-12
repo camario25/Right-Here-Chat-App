@@ -8,12 +8,21 @@ socket.on('disconnect', () => {
   console.log('disconnected form io')
 });
 
+socket.on('load saved messages', (docs) => {
+  for (let i=0; i < docs.length; i++) {
+    console.log(docs[i]);
+    let formattedTime = moment(docs[i].createdAt).format('h:mm a');
+    let li = jQuery('<li></li>');
+    li.html(`<b>${docs[i].from}</b> ${formattedTime}: ${docs[i].text}`);
+    jQuery('#messages').append(li);
+  }
+});
+
 socket.on('newMessage', (message) => {
   console.log('new message: ', message);
   let formattedTime = moment(message.createdAt).format('h:mm a');
   let li = jQuery('<li></li>');
   li.html(`<b>${message.from}</b> ${formattedTime}: ${message.text}`);
-  // li.text(`${message.from} what ${message.text.text}`);
   jQuery('#messages').append(li);
 });
   

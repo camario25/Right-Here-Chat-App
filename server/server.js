@@ -14,21 +14,21 @@ let server = http.createServer(app);
 let io = socketIO(server);
 let usernames = [];
 
-// mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/righthere', (err) => {
-//   if(err) {
-//     console.log(err);
-//   } else {
-//     console.log('connected to mongodb');
-//   }
-// });
-// 
-// let ChatSchema = mongoose.Schema({
-//   username: String,
-//   msg: String,
-//   created: {type: Date, default: Date.now},
-// });
-// 
-// let Chat = mongoose.model('Message', ChatSchema);
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/rightHere', (err) => {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log('connected to mongodb');
+  }
+});
+
+let ChatSchema = mongoose.Schema({
+  from: String,
+  text: String,
+  createdAt: {type: Date, default: Date.now},
+});
+
+let Chat = mongoose.model('Message', ChatSchema);
 
 app.get("/", function(req, res) {
   res.sendFile(publicPath + '/index.html');
@@ -54,6 +54,12 @@ app.use(function(req, res, next) {
 
 io.on('connection', (socket) => {
   console.log('user connected');
+  let oldMessages = Chat.find({});
+  oldMessages.limit(12).exec((err, docs) => {
+    if(err) throw err;
+    console.log('send old');
+    socket.emit('load saved messages', docs);
+  });
   
   socket.on('new user', (data, callback) => {
     if (usernames.indexOf(data) != -1) {
@@ -70,10 +76,13 @@ io.on('connection', (socket) => {
   
   socket.on('createMessage', (newMessage, callback) => {
     console.log('createMessage:', newMessage);
-    // let newMsg = new Chat()
+    let newMsg = new Chat({from: socket.username, text: newMessage.text});
+    newMsg.save((err) => {
+      if(err) throw err;
     io.emit('newMessage', 
      generateMessage(socket.username, newMessage.text));
      callback();
+     })
   });
   
   socket.on('createLocationMessage', (coords) => {
