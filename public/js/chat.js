@@ -30,7 +30,7 @@ socket.on('newMessage', (message) => {
   
   socket.on('newLocationMessage', (message) => {
     let li = jQuery('<li></li>');
-    let a = jQuery('<a target="_blank">I\'m Here!</a>');
+    let a = jQuery('<a target="_blank">Click MAP link: I\'m Right Here!</a>');
     let formattedTime = moment(message.createdAt).format('h:mm a');
     li.text(`${message.from} ${formattedTime}: `);
     a.attr('href', message.url);
