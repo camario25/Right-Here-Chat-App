@@ -3,7 +3,7 @@ a {
 }
 
 header {
-  background-color: #c1c8e4;
+  background: linear-gradient(#c1c8e4, #5ab9ea);
   display: flex;
   justify-content: space-around;
 }
