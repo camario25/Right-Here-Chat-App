@@ -49,11 +49,9 @@ app.get("/", function(req, res) {
 });
 
 app.post('/login', (req, res) => {
-  console.log("Logging in: ", req.body)
   User.register(new User({username: req.body.username}), req.body.password, (err, newUser) => {
     if (err) { console.log(err); }
     passport.authenticate('local')(req, res, () => {
-      console.log('auth worked');
       res.redirect('/chat');
     });
   });
@@ -71,11 +69,9 @@ app.use(function(req, res, next) {
 
 
 io.on('connection', (socket) => {
-  console.log('user connected');
   let oldMessages = Chat.find({});
   oldMessages.sort('-createdAt').limit(12).exec((err, docs) => {
     if(err) throw err;
-    console.log('send old');
     socket.emit('load saved messages', docs);
   });
   
@@ -84,7 +80,6 @@ io.on('connection', (socket) => {
       callback(false);
     } else {
       callback(true);
-      console.log(data);
       socket.username = data;
       usernames.push(socket.username);
       io.sockets.emit('usernames', usernames);
@@ -93,7 +88,6 @@ io.on('connection', (socket) => {
   });
   
   socket.on('createMessage', (newMessage, callback) => {
-    console.log('createMessage:', newMessage);
     let newMsg = new Chat({from: socket.username, text: newMessage.text});
     newMsg.save((err) => {
       if(err) throw err;
@@ -108,7 +102,6 @@ io.on('connection', (socket) => {
   });
   
   socket.on('disconnect', () => {
-    console.log('user disconnected');
     if(!socket.username) return;
     usernames.splice(usernames.indexOf(socket.username), 1);
     socket.broadcast.emit('newMessage', generateMessage('Admin', `${socket.username} has left the chat`));

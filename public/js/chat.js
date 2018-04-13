@@ -5,16 +5,15 @@ jQuery('.Logout').on('click', () => {
 });
 
 socket.on('connect', () => {
-  console.log('connected to io')
+
 });
 
 socket.on('disconnect', () => {
-  console.log('disconnected form io')
+
 });
 
 socket.on('load saved messages', (docs) => {
   for (let i = docs.length -1; i >= 0; i--) {
-    console.log(docs[docs.length -1]);
     let formattedTime = moment(docs[i].createdAt).format('h:mm a');
     let li = jQuery('<li></li>');
     li.html(`<b>${docs[i].from}</b> ${formattedTime}: ${docs[i].text}`);
@@ -23,7 +22,6 @@ socket.on('load saved messages', (docs) => {
 });
 
 socket.on('newMessage', (message) => {
-  console.log('new message: ', message);
   let formattedTime = moment(message.createdAt).format('h:mm a');
   let li = jQuery('<li></li>');
   li.html(`<b>${message.from}</b> ${formattedTime}: ${message.text}`);
@@ -41,8 +39,6 @@ socket.on('newMessage', (message) => {
   });
   
   jQuery('#message-form').on('submit', (e) => {
-        console.log('test');
-    console.log(e);
     e.preventDefault();
     
     let messageTextbox = jQuery('[name=message]');
@@ -51,7 +47,6 @@ socket.on('newMessage', (message) => {
       text: messageTextbox.val()
     },
     () => {
-      console.log('it worked');
       messageTextbox.val('')
     });
   });
@@ -73,17 +68,14 @@ socket.on('newMessage', (message) => {
   socket.on('usernames', (data) => {
     let users ='';
     let usersList = jQuery('#users-list');
-    console.log(usersList);
     for (i=0;i<data.length;i++) {
       users += data[i] + '</br>'
     } 
     usersList.html(users);
-    console.log(usersList);
   });
   
   let locationButton = jQuery('#send-map');
   locationButton.on('click', () => {
-    console.log('clicked!');
     if (!navigator.geolocation) {
       return console.log('geolocation not supported');
     };
@@ -91,7 +83,6 @@ socket.on('newMessage', (message) => {
     locationButton.attr('disabled', 'disabled').text('Sending location...');
     
     navigator.geolocation.getCurrentPosition( (position) => {
-      console.log(position);
       locationButton.removeAttr('disabled').text('I\'m Here');
       socket.emit('createLocationMessage', {
         latitude: position.coords.latitude,

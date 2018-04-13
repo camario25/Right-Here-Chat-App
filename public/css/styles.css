@@ -15,12 +15,16 @@ h1 {
   font-family: 'Audiowide', cursive;
   color: #5680e9;
 }
+h2{
+  font-family: 'Audiowide', cursive;
+  color: black;
+}
 h3 {
   font-family: 'Audiowide', cursive;
   color: #8860d0;
 }
 #logo-img {
-  margin-right: 6em;
+  margin-right: 9em;
 }
 button {
   background-color: #8860d0;
