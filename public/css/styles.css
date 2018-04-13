@@ -15,6 +15,9 @@ h1 {
   font-family: 'Audiowide', cursive;
   color: #5680e9;
 }
+#logo-img {
+  margin-right: 6em;
+}
 button {
   background-color: #8860d0;
   height: 3em;
