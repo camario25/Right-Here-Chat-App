@@ -15,13 +15,15 @@
       <div><img src="./assets/Right-Here-Logo.png"></div>
     </header>
     <div id="username-input">
-      <h1>Enter Your Username</h1>
+      <h1>Enter Your Info</h1>
       <p id="usernameError"></p>
       <form class="username-form" method="POST" action="./login">
-        <input name="username" id="username-box" type="text" placeholder="Enter Username"/>
+        <input name="username" id="username-box" type="text" placeholder="Enter Email"/>
         <input id="password-box" name="password" type="password" placeholder="Enter Password"/>
         <button id="user-send-button">Submit</button>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libraries/moment.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/js/login.js"></script>
   </body>

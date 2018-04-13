@@ -1,4 +1,5 @@
-
+// let socket = io();
+// 
 // jQuery('.username-form').on('submit', (e) => {
 //   e.preventDefault();
 //   console.log('user sent');
