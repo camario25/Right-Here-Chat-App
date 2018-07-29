@@ -1,7 +1,7 @@
 # Right-Here-Chat-App
 A chat app with geolocation capabilities
 
-This is Node.js app using socket.io server for the live capabilities and and mongoDb database.  The front in is HTML and JavaScrip with EJS from Node.  
+This is Node.js app using socket.io server for the live capabilities and and mongoDb database.  The front in is HTML, CSS, and JavaScript (jQuery).  
 
 To run this app locally, fork this app.  In the terminal: 
 ```bash
